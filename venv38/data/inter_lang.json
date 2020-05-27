@@ -1,0 +1,19 @@
+{
+	"phrases" : {
+		"info" : {
+			"ru" : "Бот предназнчен для подачи заявок на добавление новых достопримечательностей в базу данных приложения \"Аркантаун\".\n\tЕсли вы здесь, значит вероятнее всего вы хотели ДОБАВИТЬ новую викторину",
+			"de" : "Der Bot wurde entwickelt, um neue Attraktionen zur Datenbank der Arkantown-Anwendung hinzuzufügen.\nWenn Sie hier sind, möchten Sie höchstwahrscheinlich ein neues Quiz hinzufügen",
+			"en" : "Bot prednaznchen dlya podachi zayavok na dobavleniye novykh dostoprimechatel'nostey v bazu dannykh prilozheniya \"Arkantaun\".\n\tYesli vy zdes', znachit veroyatneye vsego vy khoteli DOBAVIT' novuyu viktorinu\n188/5000\nThe bot is designed to apply for adding new attractions to the database of the Arkantown application.\nIf you are here, then most likely you would like to ADD a new quiz"
+		},
+		"here_point" : {
+			"ru" : "Здесь!",
+			"de" : "Hier!",
+			"en" : "Here!"
+		},
+		"dont_get_it" : {
+			"ru" : "Извините, не могу помочь с этим запросом.",
+			"de" : "dast is sorry cannot find",
+			"en" : "Sorry cant find this"
+		}
+	}
+}
