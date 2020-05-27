@@ -5,6 +5,66 @@
 			"de" : "Der Bot wurde entwickelt, um neue Attraktionen zur Datenbank der Arkantown-Anwendung hinzuzufügen.\nWenn Sie hier sind, möchten Sie höchstwahrscheinlich ein neues Quiz hinzufügen",
 			"en" : "Bot prednaznchen dlya podachi zayavok na dobavleniye novykh dostoprimechatel'nostey v bazu dannykh prilozheniya \"Arkantaun\".\n\tYesli vy zdes', znachit veroyatneye vsego vy khoteli DOBAVIT' novuyu viktorinu\n188/5000\nThe bot is designed to apply for adding new attractions to the database of the Arkantown application.\nIf you are here, then most likely you would like to ADD a new quiz"
 		},
+		"user_help" : {
+			"ru" : "User commands:\n/info, /help, /add, /change, /auth",
+			"de" : "User commands:\n/info, /help, /add, /change, /auth",
+			"en" : "User commands:\n/info, /help, /add, /change, /auth"
+		},
+		"mod_help" : {
+			"ru" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout",
+			"de" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout",
+			"en" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout"
+		},
+
+		"welcome" : {
+			"ru" : "Добро пожаловать",
+			"de" : "Der WELCOME",
+			"en" : "welcome"
+		},
+		"welcome_moderator" : {
+			"ru" : "Добро пожаловать, модератора",
+			"de" : "Der WELCOME, moderatore",
+			"en" : "Welcome, moderatore"
+		},
+
+		"you_moderator_already" : {
+			"ru" : "Вы уже модероратор. аутентификация не требуется",
+			"de" : "Вы уже модероратор",
+			"en" : "Вы уже модероратор"
+		},
+		"auth_welcome" : {
+			"ru" : "Введите Ваш данные в следующем виде:\n?роль::логин::пароль\n\n(Пример: ?moderator::mod_login::qwerty123)",
+			"de" : "Geben Sie Ihre Daten in folgender Form ein:\n?role::login::password\n\n(Beispiel: ?moderator::mod_login::qwerty123)",
+			"en" : "Enter your data in the following form:\n?role::login::password\n\n(Example: ?moderator::mod_login::qwerty123)"
+		},
+		"auth_wasnt_requested" : {
+			"ru" : "Попытка ввести данные для модерации. Для аутентификации введите команду\n/auth",
+			"de" : "Versuchen Sie, Daten zur Moderation einzugeben. Geben Sie zur Authentifizierung den Befehl\n/auth ein",
+			"en" : "Attempt to enter data for moderation. For authentication, enter the command\n/auth"
+		},
+		"auth_success_moderator" : {
+			"ru" : "auth_success_moderator (ru)",
+			"de" : "auth_success_moderator (de)",
+			"en" : "auth_success_moderator (en)"
+		},
+		"auth_fail_moderator" : {
+			"ru" : "auth_fail_moderator (ru)",
+			"de" : "auth_fail_moderator (de)",
+			"en" : "auth_fail_moderator (en)"
+		},
+
+		"logout_fail" : {
+			"ru" : "logout_fail (ru)",
+			"de" : "logout_fail (de)",
+			"en" : "logout_fail (en)"
+		},
+		"logout_success" : {
+			"ru" : "logout_success (ru)",
+			"de" : "logout_success (de)",
+			"en" : "logout_success (en)"
+		},
+
+
 		"here_point" : {
 			"ru" : "Здесь!",
 			"de" : "Hier!",
