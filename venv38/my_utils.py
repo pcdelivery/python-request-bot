@@ -46,7 +46,6 @@ def add_moderator(id):
 
 
 def get_phrase_from_res(tag, user_lang_code):
-    # log needed
     print(f"[get_phrase_from_res: tag {tag}, user_lang: {user_lang_code}]")
 
     with open("data/inter_lang.json", "r") as json_file:

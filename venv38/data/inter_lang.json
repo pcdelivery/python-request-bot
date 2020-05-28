@@ -105,7 +105,16 @@
 			"en" : "add_questions_result (en)"
 		},
 
-
+		"data_is_empty" : {
+			"ru" : "data_is_empty (ru)",
+			"de" : "data_is_empty (de)",
+			"en" : "data_is_empty (en)"
+		},
+		"data_not_moderator" : {
+			"ru" : "data_not_moderator (ru)",
+			"de" : "data_not_moderator (de)",
+			"en" : "data_not_moderator (en)"
+		},
 
 		"dont_get_it" : {
 			"ru" : "Извините, не могу помочь с этим запросом.",

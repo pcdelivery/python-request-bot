@@ -4,18 +4,16 @@ from venv38.Models.Question import Question
 # ([+-]) - plus/minus
 # [^:+-]([\w\s]+) - only phrases
 
+
 class UserRequest:
-    user_id = ""
-    description: str = ""
-    place_title: str = ""
-    questions = []
-    size: int = 0
-    ans_size: int = 0
 
     def __init__(self, user_id: int, description: str, place: str, questions: list):
         self.user_id = str(user_id)
         self.description = description
         self.place_title = place
+        self.questions = []
+        self.size = 0
+        self.ans_size = 0
 
         for que in questions:
             self.size += 1
@@ -31,10 +29,10 @@ class UserRequest:
         result += "\n\tPlace: " + self.place_title
         result += "\n\tQuestion size: " + str(self.size)
         result += "\n\tAnswers size: " + str(self.ans_size)
-        result += "\n\n\tQuestions: "
+        result += "\n\tQuestions:\n"
 
-        for que in self.questions:
-            result += que.show()
+        for i in range(0, self.size):
+            result += self.questions[i].show()
 
         return result
 

@@ -1,16 +1,11 @@
-from venv38.Models.Answer import Answer
-
-
 class Question:
-    question: str = ""
-    answers = []
-    size: int = 0
 
     def __init__(self, text: list):
         # print("QUESTION: " + str(text) + " : " + str(len(text)))
 
         self.question = str(text[0])
         self.answers = []
+        self.size = 0
 
         for i in range(1, len(text)):
             # print("QUESTION APPEND: " + text[i])
@@ -22,7 +17,7 @@ class Question:
         # print("QUESTION ANSWERS LEN: " + str(len(self.answers)))
 
     def show(self) -> str:
-        result = "\'" + self.question + "\'"
+        result = "\t\'" + self.question + "\'\n"
         # print("Question Text: " + self.question)
         for ans in self.answers:
             result += str(ans) + "\n"

@@ -108,6 +108,13 @@ async def moderator_logout(message: types.Message):
                        get_phrase_from_res(JsonTags.LOGOUT_SUCCESS, message.from_user.language_code))
 
 
+@dp.message_handler(commands=['cancel'], state=Form.description)
+async def add_place1(message: types.Message):
+    print("Cancel")
+    await Form.info.set()
+    return SendMessage(message.chat.id, "OK")
+
+
 # Для модератора также доступно
 @dp.message_handler(commands=['add', 'cancel'], state='*')
 async def add_place1(message: types.Message):
@@ -167,22 +174,10 @@ async def add_place4(message: types.Message, state: FSMContext):
     storage.data["question"] = []
     storage.data["question"].append(message.text)
 
-
-    # matrix = storage.data["que_ans"]
-    # cur_que = storage.data["que_index"]
-    # storage.data["ans_index"] = 1
-    #
-    # matrix[cur_que][0] = message.text
-
-    # print("Question size: " + str(storage.data["que_index"]))
-
     await Form.next()
 
     response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_ANSWER, message.from_user.language_code)
     return SendMessage(message.chat.id, response)
-
-
-
 
 
 @dp.message_handler(commands=["commit_answers"], state=Form.answer)
@@ -211,38 +206,44 @@ async def add_place5(message: types.Message, state: FSMContext):
 
     storage.data["question"].append(message.text)
 
-    # matrix = storage.data["que_ans"]
-    # cur_que = storage.data["que_index"]
-    # cur_ans = storage.data["ans_index"]
-    #
-    # matrix[cur_que][cur_ans] = message.text
-    # storage.data["ans_index"] += 1
-
-    # print("Answer2: " + matrix[cur_que][cur_ans])
-    # print("Answers size: " + str(storage.data["ans_index"]))
-
     response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_ANSWER_AGAIN, message.from_user.language_code)
     return SendMessage(message.chat.id, response)
 
 
+@dp.message_handler(commands=['fetch_one'], state='*')
+async def fetch_one(message: types.Message):
+    if not storage.data['is_moderator']:
+        return SendMessage(message.chat.id, JsonTags.DATA_NOT_MODERATOR)
 
-@dp.message_handler(regexp="[?]\w+::\w+::\w+$")
-async def auth(message: types.Message):
-    if not storage.data['is_auth_requested']:
-        print("auth regex handler: not requested")
-        return SendMessage(message.chat.id,
-                           get_phrase_from_res(JsonTags.AUTH_NOT_REQUESTED, message.from_user.language_code))
+    result = ""
+    writ_was_began = False
 
-    storage.data['is_auth_requested'] = False
-    print("auth regex handler: requested")
-    if login_moderator(message.text, message.from_user.id):
-        print("auth regex handler: login_moderator is True")
-        storage.data['is_moderator'] = True
-        return SendMessage(message.chat.id,
-                           get_phrase_from_res(JsonTags.AUTH_SUCCESS_MODERATOR, message.from_user.language_code))
+    # file = open("data/new_data.txt", "r+")
+    lines = open("data/new_data.txt").readlines()
+    lines_to_delete = 0
 
-    return SendMessage(message.chat.id,
-                       get_phrase_from_res(JsonTags.AUTH_FAIL_MODERATOR, message.from_user.language_code))
+
+    for line in lines:
+        print("LINE: " + line)
+        if "User id" in line and not writ_was_began:
+            writ_was_began = True
+
+        lines_to_delete += 1
+        result += line
+
+        if (line == "" or line == "\n") and writ_was_began:
+            break
+
+
+    with open("data/new_data.txt", "w") as file:
+        file.writelines(lines[lines_to_delete:-1])
+
+    if result == "":
+        # todo
+        result = JsonTags.DATA_IS_EMPTY
+
+    return SendMessage(message.chat.id, result)
+    # await return message.reply("Heaya")
 
 
 @dp.message_handler()

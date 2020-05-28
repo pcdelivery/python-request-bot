@@ -24,4 +24,7 @@ class JsonTags:
     ADD_CORRECT_ANSWER = "add_correct_answer"
     ADD_RESULT = "add_questions_result"
 
+    DATA_NOT_MODERATOR = "data_not_moderator"
+    DATA_IS_EMPTY = "data_is_empty"
+
     STRING_DONT_GET_IT = "dont_get_it"
