@@ -5,25 +5,38 @@ from venv38.Models.Question import Question
 # [^:+-]([\w\s]+) - only phrases
 
 class UserRequest:
-    place_title: str = ""
+    user_id = ""
     description: str = ""
+    place_title: str = ""
     questions = []
     size: int = 0
+    ans_size: int = 0
 
-    # def __init__(self, place: str, description: str):
-    #     self.place_title = place
-    #     self.description = description
+    def __init__(self, user_id: int, description: str, place: str, questions: list):
+        self.user_id = str(user_id)
+        self.description = description
+        self.place_title = place
 
+        for que in questions:
+            self.size += 1
 
-    # def __init__(self, regex: str):
-    #     # examples: "This one ", "another one"
-    #     phrases = re.findall("[^:+-]([\w\s]+)", regex)
-    #
-    #     # pluses and minuses
-    #     answer_tags = re.findall("([+-])", regex)
-    #
-    #     self.description = phrases[0]
-    #     self.place_title = phrases[1]
+            temp = Question(que)
+            self.ans_size += temp.size
+            self.questions.append(temp)
+
+    def show(self) -> str:
+        result = ""
+        result += "\n\n\tUser id: " + str(self.user_id)
+        result += "\n\tUserRequest\n\tDescription: " + self.description
+        result += "\n\tPlace: " + self.place_title
+        result += "\n\tQuestion size: " + str(self.size)
+        result += "\n\tAnswers size: " + str(self.ans_size)
+        result += "\n\n\tQuestions: "
+
+        for que in self.questions:
+            result += que.show()
+
+        return result
 
     def add_question(self, question: Question):
         self.questions[self.size] = question

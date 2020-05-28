@@ -5,12 +5,14 @@ import json
 from venv38.my_utils import *
 from venv38.params import *
 from venv38.tags import *
+from venv38.DatabaseManager import *
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.webhook import SendMessage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from typing import Tuple
 
 
 class Form(StatesGroup):
@@ -19,6 +21,7 @@ class Form(StatesGroup):
     place_name = State()
     question = State()
     answer = State()
+    correct_answer = State()
 
 
 user_commands_available = ("/info", "/help", "/add", "/change", "/auth")
@@ -133,8 +136,10 @@ async def add_place3(message: types.Message, state: FSMContext):
     print("Place name: " + message.text)
 
     storage.data["place"] = message.text
-    storage.data["que_ans"] = [[0 for x in range(ANSWERS_PER_QUESTION_MAX)] for y in range(QUESTIONS_MAX)]
-    storage.data["que_index"] = 0
+    storage.data["question_list"] = []
+
+    # storage.data["que_ans"] = [1][1]
+    # storage.data["que_index"] = 0
 
     await Form.next()
 
@@ -146,10 +151,8 @@ async def add_place3(message: types.Message, state: FSMContext):
 async def add_place7(message: types.Message, state: FSMContext):
     print("Questions committed: ")
 
-    for stri in storage.data["que_ans"]:
-        print(str(stri))
-
-    print(str(storage.data["que_ans"][0][0]) + " " + str(storage.data["que_ans"][0][1]) + " " + str(storage.data["que_ans"][0][2]))
+    req = UserRequest(message.from_user.id, storage.data["description"], storage.data["place"], storage.data["question_list"])
+    text_storing(req)
 
     await Form.info.set()
 
@@ -161,13 +164,17 @@ async def add_place7(message: types.Message, state: FSMContext):
 async def add_place4(message: types.Message, state: FSMContext):
     print("Question: " + message.text)
 
-    matrix = storage.data["que_ans"]
-    cur_que = storage.data["que_index"]
-    storage.data["ans_index"] = 1
+    storage.data["question"] = []
+    storage.data["question"].append(message.text)
 
-    matrix[cur_que][0] = message.text
 
-    print("Question size: " + str(storage.data["que_index"]))
+    # matrix = storage.data["que_ans"]
+    # cur_que = storage.data["que_index"]
+    # storage.data["ans_index"] = 1
+    #
+    # matrix[cur_que][0] = message.text
+
+    # print("Question size: " + str(storage.data["que_index"]))
 
     await Form.next()
 
@@ -180,12 +187,18 @@ async def add_place4(message: types.Message, state: FSMContext):
 
 @dp.message_handler(commands=["commit_answers"], state=Form.answer)
 async def add_place6(message: types.Message, state: FSMContext):
-    print("Answers committed: ")
-    for i in range(0, storage.data["que_index"] - 1):
-        for j in range(1, storage.data["ans_index"] - 1):
-            print(storage.data["que_ans"][i][j])
+    # print("COMMIT ANSWERS: " + str(storage.data["question"]))
 
-    storage.data["que_index"] += 1
+    # storage.data["question_list"].append(storage.data["question"])
+    await Form.next()
+
+    response = get_phrase_from_res(JsonTags.ADD_CORRECT_ANSWER, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(state=Form.correct_answer)
+async def add_place8(message: types.Message, state: FSMContext):
+    storage.data["question_list"].append(storage.data["question"])
     await Form.question.set()
 
     response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_QUESTION, message.from_user.language_code)
@@ -196,15 +209,17 @@ async def add_place6(message: types.Message, state: FSMContext):
 async def add_place5(message: types.Message, state: FSMContext):
     print("Answer: " + message.text)
 
-    matrix = storage.data["que_ans"]
-    cur_que = storage.data["que_index"]
-    cur_ans = storage.data["ans_index"]
+    storage.data["question"].append(message.text)
 
-    matrix[cur_que][cur_ans] = message.text
-    storage.data["ans_index"] += 1
+    # matrix = storage.data["que_ans"]
+    # cur_que = storage.data["que_index"]
+    # cur_ans = storage.data["ans_index"]
+    #
+    # matrix[cur_que][cur_ans] = message.text
+    # storage.data["ans_index"] += 1
 
-    print("Answer2: " + matrix[cur_que][cur_ans])
-    print("Answers size: " + str(storage.data["ans_index"]))
+    # print("Answer2: " + matrix[cur_que][cur_ans])
+    # print("Answers size: " + str(storage.data["ans_index"]))
 
     response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_ANSWER_AGAIN, message.from_user.language_code)
     return SendMessage(message.chat.id, response)

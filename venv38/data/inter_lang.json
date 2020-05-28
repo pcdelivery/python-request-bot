@@ -94,6 +94,11 @@
 			"de" : "add_questions_answer_again (de) /commit_answers",
 			"en" : "add_questions_answer_again (en) /commit_answers"
 		},
+		"add_correct_answer" : {
+			"ru" : "add_correct_answer (ru)",
+			"de" : "add_correct_answer (de)",
+			"en" : "add_correct_answer (en)"
+		},
 		"add_questions_result" : {
 			"ru" : "add_questions_result (ru)",
 			"de" : "add_questions_result (de)",

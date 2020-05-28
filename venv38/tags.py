@@ -21,6 +21,7 @@ class JsonTags:
     ADD_QUESTIONS_QUESTION = "add_questions_question"
     ADD_QUESTIONS_ANSWER = "add_questions_answer"
     ADD_QUESTIONS_ANSWER_AGAIN = "add_questions_answer_again"
+    ADD_CORRECT_ANSWER = "add_correct_answer"
     ADD_RESULT = "add_questions_result"
 
     STRING_DONT_GET_IT = "dont_get_it"

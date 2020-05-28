@@ -9,9 +9,15 @@ REQUEST_QUE_TABLE = "requests_questions"
 REQUEST_ANS_TABLE = "requests_answers"
 
 
+# todo
+def text_storing(request: UserRequest):
+    with open("data/new_data.txt", "a") as file:
+        file.write(request.show())
+
+
 def _init_():
-    with open("createdb.sql", "r") as f:
-        sql = f.read()
+    with open("sqlite_init.sql", "r") as file:
+        sql = file.read()
     cursor.executescript(sql)
     conn.commit()
 
