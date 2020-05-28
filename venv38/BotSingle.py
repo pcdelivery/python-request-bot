@@ -8,30 +8,34 @@ from venv38.tags import *
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.webhook import SendMessage
 from aiogram.dispatcher import FSMContext
+from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-# class Form(StatesGroup):
-#     person_define = State()
-#     user = State()
-#     moderator = State()
+
+class Form(StatesGroup):
+    info = State()
+    description = State()
+    place_name = State()
+    question = State()
+    answer = State()
 
 
 user_commands_available = ("/info", "/help", "/add", "/change", "/auth")
 mod_commands_available = ("/info", "/help", "/list10", "/one_by_one", "/logout")
 
+QUESTIONS_MAX = 8
+ANSWERS_PER_QUESTION_MAX = 25
 
 # def auth(func):
 #     async def wrapper(message):
 #         if message['from']['id'] !=
 
 
-
-
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TG_TOKEN, proxy=TG_PROXY)
 storage = MemoryStorage()
-dp = Dispatcher(bot)
+dp = Dispatcher(bot, storage=storage)
 
 
 @dp.message_handler(commands="start")
@@ -75,13 +79,13 @@ async def auth(message: types.Message):
 
 
 @dp.message_handler(commands=['info'])
-async def send_welcome(message: types.Message):
+async def info(message: types.Message):
     return SendMessage(message.chat.id,
                        get_phrase_from_res(JsonTags.INFO, message.from_user.language_code))
 
 
 @dp.message_handler(commands=['help'])
-async def send_welcome(message: types.Message):
+async def help(message: types.Message):
     if storage.data['is_moderator']:
         return SendMessage(message.chat.id,
                            get_phrase_from_res(JsonTags.HELP_MODERATOR, message.from_user.language_code))
@@ -100,11 +104,130 @@ async def moderator_logout(message: types.Message):
     return SendMessage(message.chat.id,
                        get_phrase_from_res(JsonTags.LOGOUT_SUCCESS, message.from_user.language_code))
 
-#
-# @dp.message_handler(regexp='^Где$')
-# async def point_place(message: types.Message):
-#     with open("data/img/.png", "rb") as photo:
-#         await message.reply_photo(photo, caption="Here!")
+
+# Для модератора также доступно
+@dp.message_handler(commands=['add', 'cancel'], state='*')
+async def add_place1(message: types.Message):
+    print("Add init")
+
+    await Form.description.set()
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_DESCRIPTION, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(state=Form.description, content_types=types.ContentTypes.TEXT)
+async def add_place2(message: types.Message, state: FSMContext):
+    print("Description: " + message.text)
+
+    storage.data["description"] = message.text
+
+    await Form.next()
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_PLACE, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(state=Form.place_name, content_types=types.ContentTypes.TEXT)
+async def add_place3(message: types.Message, state: FSMContext):
+    print("Place name: " + message.text)
+
+    storage.data["place"] = message.text
+    storage.data["que_ans"] = [[0 for x in range(ANSWERS_PER_QUESTION_MAX)] for y in range(QUESTIONS_MAX)]
+    storage.data["que_index"] = 0
+
+    await Form.next()
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_QUESTION, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(commands=["commit_questions"], state=Form.question)
+async def add_place7(message: types.Message, state: FSMContext):
+    print("Questions committed: ")
+
+    for stri in storage.data["que_ans"]:
+        print(str(stri))
+
+    print(str(storage.data["que_ans"][0][0]) + " " + str(storage.data["que_ans"][0][1]) + " " + str(storage.data["que_ans"][0][2]))
+
+    await Form.info.set()
+
+    response = get_phrase_from_res(JsonTags.ADD_RESULT, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(state=Form.question, content_types=types.ContentTypes.TEXT)
+async def add_place4(message: types.Message, state: FSMContext):
+    print("Question: " + message.text)
+
+    matrix = storage.data["que_ans"]
+    cur_que = storage.data["que_index"]
+    storage.data["ans_index"] = 1
+
+    matrix[cur_que][0] = message.text
+
+    print("Question size: " + str(storage.data["que_index"]))
+
+    await Form.next()
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_ANSWER, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+
+
+
+@dp.message_handler(commands=["commit_answers"], state=Form.answer)
+async def add_place6(message: types.Message, state: FSMContext):
+    print("Answers committed: ")
+    for i in range(0, storage.data["que_index"] - 1):
+        for j in range(1, storage.data["ans_index"] - 1):
+            print(storage.data["que_ans"][i][j])
+
+    storage.data["que_index"] += 1
+    await Form.question.set()
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_QUESTION, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+@dp.message_handler(state=Form.answer, content_types=types.ContentTypes.TEXT)
+async def add_place5(message: types.Message, state: FSMContext):
+    print("Answer: " + message.text)
+
+    matrix = storage.data["que_ans"]
+    cur_que = storage.data["que_index"]
+    cur_ans = storage.data["ans_index"]
+
+    matrix[cur_que][cur_ans] = message.text
+    storage.data["ans_index"] += 1
+
+    print("Answer2: " + matrix[cur_que][cur_ans])
+    print("Answers size: " + str(storage.data["ans_index"]))
+
+    response = get_phrase_from_res(JsonTags.ADD_QUESTIONS_ANSWER_AGAIN, message.from_user.language_code)
+    return SendMessage(message.chat.id, response)
+
+
+
+@dp.message_handler(regexp="[?]\w+::\w+::\w+$")
+async def auth(message: types.Message):
+    if not storage.data['is_auth_requested']:
+        print("auth regex handler: not requested")
+        return SendMessage(message.chat.id,
+                           get_phrase_from_res(JsonTags.AUTH_NOT_REQUESTED, message.from_user.language_code))
+
+    storage.data['is_auth_requested'] = False
+    print("auth regex handler: requested")
+    if login_moderator(message.text, message.from_user.id):
+        print("auth regex handler: login_moderator is True")
+        storage.data['is_moderator'] = True
+        return SendMessage(message.chat.id,
+                           get_phrase_from_res(JsonTags.AUTH_SUCCESS_MODERATOR, message.from_user.language_code))
+
+    return SendMessage(message.chat.id,
+                       get_phrase_from_res(JsonTags.AUTH_FAIL_MODERATOR, message.from_user.language_code))
 
 
 @dp.message_handler()

@@ -64,12 +64,44 @@
 			"en" : "logout_success (en)"
 		},
 
-
-		"here_point" : {
-			"ru" : "Здесь!",
-			"de" : "Hier!",
-			"en" : "Here!"
+		"add_questions" : {
+			"ru" : "add_questions (ru)",
+			"de" : "add_questions (de)",
+			"en" : "add_questions (en)"
 		},
+		"add_questions_description" : {
+			"ru" : "add_questions_description (ru)",
+			"de" : "add_questions_description (de)",
+			"en" : "add_questions_description (en)"
+		},
+		"add_questions_place" : {
+			"ru" : "add_questions_place (ru)",
+			"de" : "add_questions_place (de)",
+			"en" : "add_questions_place (en)"
+		},
+		"add_questions_question" : {
+			"ru" : "add_questions_question (ru) /commit_questions",
+			"de" : "add_questions_question (de) /commit_questions",
+			"en" : "add_questions_question (en) /commit_questions"
+		},
+		"add_questions_answer" : {
+			"ru" : "add_questions_answer (ru) /commit_answers",
+			"de" : "add_questions_answer (de) /commit_answers",
+			"en" : "add_questions_answer (en) /commit_answers"
+		},
+		"add_questions_answer_again" : {
+			"ru" : "add_questions_answer_again (ru) /commit_answers",
+			"de" : "add_questions_answer_again (de) /commit_answers",
+			"en" : "add_questions_answer_again (en) /commit_answers"
+		},
+		"add_questions_result" : {
+			"ru" : "add_questions_result (ru)",
+			"de" : "add_questions_result (de)",
+			"en" : "add_questions_result (en)"
+		},
+
+
+
 		"dont_get_it" : {
 			"ru" : "Извините, не могу помочь с этим запросом.",
 			"de" : "dast is sorry cannot find",

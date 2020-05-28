@@ -8,7 +8,6 @@ class JsonTags:
     AUTH_SUCCESS_MODERATOR = "auth_success_moderator"
     AUTH_FAIL_MODERATOR = "auth_fail_moderator"
 
-    # todo
     HELP_USER = "user_help"
     HELP_MODERATOR = "mod_help"
     INFO = "info"
@@ -16,5 +15,12 @@ class JsonTags:
     LOGOUT_FAIL = "logout_fail"
     LOGOUT_SUCCESS = "logout_success"
 
-    STRING_HERE_POINT = "here_point"
+    # ADD_QUESTIONS_WELCOME = "add_questions"
+    ADD_QUESTIONS_DESCRIPTION = "add_questions_description"
+    ADD_QUESTIONS_PLACE = "add_questions_place"
+    ADD_QUESTIONS_QUESTION = "add_questions_question"
+    ADD_QUESTIONS_ANSWER = "add_questions_answer"
+    ADD_QUESTIONS_ANSWER_AGAIN = "add_questions_answer_again"
+    ADD_RESULT = "add_questions_result"
+
     STRING_DONT_GET_IT = "dont_get_it"
