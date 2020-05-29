@@ -1,5 +1,6 @@
 import json
 
+
 def is_moderator(id: int) -> bool:
     try:
         file = open("data/moderators", "r")

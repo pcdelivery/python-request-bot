@@ -15,7 +15,6 @@ class JsonTags:
     LOGOUT_FAIL = "logout_fail"
     LOGOUT_SUCCESS = "logout_success"
 
-    # ADD_QUESTIONS_WELCOME = "add_questions"
     ADD_QUESTIONS_DESCRIPTION = "add_questions_description"
     ADD_QUESTIONS_PLACE = "add_questions_place"
     ADD_QUESTIONS_QUESTION = "add_questions_question"
@@ -23,6 +22,7 @@ class JsonTags:
     ADD_QUESTIONS_ANSWER_AGAIN = "add_questions_answer_again"
     ADD_CORRECT_ANSWER = "add_correct_answer"
     ADD_RESULT = "add_questions_result"
+    ADD_CANCEL = "cancel_injection"
 
     DATA_NOT_MODERATOR = "data_not_moderator"
     DATA_IS_EMPTY = "data_is_empty"

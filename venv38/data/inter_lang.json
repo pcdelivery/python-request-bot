@@ -1,125 +1,128 @@
 {
+	"mod_commands_available" : ["/start", "/info", "/help", "/logout", "/add", "/fetch_one", " : ", "/cancel", "/commit_answer", "/commit_question"],
+	"user_commands_available" : ["/start", "/auth", "/info", "/help", "/add", " : ", "/cancel", "/commit_answer", "/commit_question"],
+
 	"phrases" : {
 		"info" : {
-			"ru" : "Бот предназнчен для подачи заявок на добавление новых достопримечательностей в базу данных приложения \"Аркантаун\".\n\tЕсли вы здесь, значит вероятнее всего вы хотели ДОБАВИТЬ новую викторину",
-			"de" : "Der Bot wurde entwickelt, um neue Attraktionen zur Datenbank der Arkantown-Anwendung hinzuzufügen.\nWenn Sie hier sind, möchten Sie höchstwahrscheinlich ein neues Quiz hinzufügen",
-			"en" : "Bot prednaznchen dlya podachi zayavok na dobavleniye novykh dostoprimechatel'nostey v bazu dannykh prilozheniya \"Arkantaun\".\n\tYesli vy zdes', znachit veroyatneye vsego vy khoteli DOBAVIT' novuyu viktorinu\n188/5000\nThe bot is designed to apply for adding new attractions to the database of the Arkantown application.\nIf you are here, then most likely you would like to ADD a new quiz"
+			"ru" : "Бот предназначен для внесения заявок на добавление новых достопримечательностей и викторин в базу данных приложения \"Аркантаун\".\n.\nПринцип его работы заключается в приеме (в диалоговой форме) заявок на добавление новой записи в базу данных (расширяемый текстовый файл на сервере держателя) в виде опроса. Пользователь с особыми правами (модератор) может, в свою очередь, также удаленно получать эти записи для обработки и добавлением корректно оформленной записи в базу данных приложения.\n.\nПриложение является составной частью курсового проекта студента СПбГЭТУ \"ЛЭТИ\" Буракаева Д.А. (гр. 6305)",
+			"de" : "Der Bot ist so konzipiert, dass er eine Anfrage zum Hinzufügen neuer Orte und Tests zur Datenbank der mobilen Anwendung \"Arkantown\" bildet.\n.\nDas Prinzip seiner Arbeit besteht darin, (in einem Dialogformular) Anfragen zum Hinzufügen eines neuen Datensatzes zu akzeptieren die Datenbank (erweiterbare Textdatei auf dem Server des Inhabers) in Form einer Umfrage. Ein Benutzer mit besonderen Rechten (Moderator) kann diese Datensätze aus der Ferne empfangen, um sie zu verarbeiten und zur Anwendungsdatenbank hinzuzufügen.\n.\nDie Anwendung ist ein wesentlicher Bestandteil des Studentenprojekts von St. Staatliche Elektrotechnische Universität Petersburg \"LETI\" (Burakaev Daniiar, 6305)",
+			"en" : "The bot is designed to form request for adding new places and quizzes to the database of mobile application \"Arkantown\".\n.\nThe principle of its work is to accept (in a dialogue form) requests for adding a new record to the database (expandable text file on the holder's server) in the form of a survey. A user with special rights (moderator) may remotely receive these records for processing and adding them to the application database.\n.\nThe application is an integral part of the student project of St. Petersburg State Electrotechnical University \"LETI\" (Burakaev Daniiar, 6305)"
 		},
 		"user_help" : {
-			"ru" : "User commands:\n/info, /help, /add, /change, /auth",
-			"de" : "User commands:\n/info, /help, /add, /change, /auth",
-			"en" : "User commands:\n/info, /help, /add, /change, /auth"
+			"ru" : "Доступные пользователю команды:\n/help - вывод текущего окна\n/info - вывод текста с информацией об этом боте\n/start - начать работу с ботом\n/auth - провести аутентификацию как модератор\n/add - предложить запись в базу данных",
+			"de" : "Die Befehle, die dem Benutzer zur Verfügung stehen:\n/help - Dieses Fenster anzeigen\n/info - Text mit Informationen zu diesem Bot anzeigen\n/start - Mit dem Bot arbeiten\n/auth - Als Moderator authentifizieren\n/add - eine Anfrage anbieten",
+			"en" : "The commands available for the user:\n/help - display this window\n/info - display text with information about this bot\n/start - start working with the bot\n/auth - authenticate as a moderator\n/add - offer an request"
 		},
 		"mod_help" : {
-			"ru" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout",
-			"de" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout",
-			"en" : "Moderator commands:\n/info, /help, /list10, /one_by_one, /logout"
+			"ru" : "Доступные модератору команды:\n/help - вывод текущего окна\n/info - вывод текста с информацией об этом боте\n/start - начать работу с ботом\n/logout - прекратить работу с ботом от имени модератора\n/add - предложить запись в базу данных\n/fetch_one - вывести одну запись из базы данных с заявками",
+			"de" : "Die Befehle, die dem Moderator zur Verfügung stehen:\n/help - Dieses Fenster anzeigen\n/info - Text mit Informationen zu diesem Bot anzeigen\n/start - Mit dem Bot arbeiten\n/logout - Mit dem Bot als Moderator nicht mehr arbeiten\n/add - eine Anfrage anbieten\n/fetch_one - zeigt einen Eintrag aus der Datenbank an",
+			"en" : "The commands available for the moderator:\n/help - display this window\n/info - display text with information about this bot\n/start - start working with the bot\n/logout - stop working with the bot as a moderator\n/add - offer an request\n/fetch_one - display one entry from the database"
 		},
 
 		"welcome" : {
-			"ru" : "Добро пожаловать",
-			"de" : "Der WELCOME",
-			"en" : "welcome"
+			"ru" : "Добро пожаловать, Пользователь!",
+			"de" : "Willkommen Benutzer!",
+			"en" : "Welcome User!"
 		},
 		"welcome_moderator" : {
-			"ru" : "Добро пожаловать, модератора",
-			"de" : "Der WELCOME, moderatore",
-			"en" : "Welcome, moderatore"
+			"ru" : "Добро пожаловать, Модератор!",
+			"de" : "Willkommen Moderator!",
+			"en" : "Welcome Moderator!"
 		},
 
 		"you_moderator_already" : {
-			"ru" : "Вы уже модероратор. аутентификация не требуется",
-			"de" : "Вы уже модероратор",
-			"en" : "Вы уже модероратор"
+			"ru" : "Вы уже авторизованы как модератор",
+			"de" : "Sie sind bereits als Moderator angemeldet",
+			"en" : "You are already logged in as moderator"
 		},
 		"auth_welcome" : {
-			"ru" : "Введите Ваш данные в следующем виде:\n?роль::логин::пароль\n\n(Пример: ?moderator::mod_login::qwerty123)",
-			"de" : "Geben Sie Ihre Daten in folgender Form ein:\n?role::login::password\n\n(Beispiel: ?moderator::mod_login::qwerty123)",
-			"en" : "Enter your data in the following form:\n?role::login::password\n\n(Example: ?moderator::mod_login::qwerty123)"
+			"ru" : "Введите Ваши данные в следующем виде:\n?роль::логин::пароль\n\n(Пример ввода: ?moderator::login::qwerty123)",
+			"de" : "Geben Sie Ihre Daten in folgender Form ein:\n?role::login::password\n\n(Beispiel: ?moderator::login::qwerty123)",
+			"en" : "Enter your data in the following form:\n?role::login::password\n\n(Example: ?moderator::login::qwerty123)"
 		},
 		"auth_wasnt_requested" : {
-			"ru" : "Попытка ввести данные для модерации. Для аутентификации введите команду\n/auth",
-			"de" : "Versuchen Sie, Daten zur Moderation einzugeben. Geben Sie zur Authentifizierung den Befehl\n/auth ein",
-			"en" : "Attempt to enter data for moderation. For authentication, enter the command\n/auth"
+			"ru" : "Обнаружена попытка авторизации для модерирования. Для аутентификации введите следующую команду\n/auth",
+			"de" : "Authentifizierungsversuch zur Moderation erkannt. Geben Sie zur Authentifizierung den folgenden Befehl ein:\n/auth",
+			"en" : "Authentication attempt detected for moderation. For authentication enter the following command\n/auth"
 		},
 		"auth_success_moderator" : {
-			"ru" : "auth_success_moderator (ru)",
-			"de" : "auth_success_moderator (de)",
-			"en" : "auth_success_moderator (en)"
+			"ru" : "Вы успешно авторизировались. Теперь вам доступны функции отбора заявок.\nДобро пожаловать!",
+			"de" : "Sie haben sich erfolgreich angemeldet. Jetzt haben Sie Zugriff auf moderate Funktionen.\nWillkommen!",
+			"en" : "You have successfully logged in. Now you have access to moderate functions.\nWelcome!"
 		},
 		"auth_fail_moderator" : {
-			"ru" : "auth_fail_moderator (ru)",
-			"de" : "auth_fail_moderator (de)",
-			"en" : "auth_fail_moderator (en)"
+			"ru" : "Авторизация неудачна. Учетная запись не была найдена в системе",
+			"de" : "Autorisation fehlgeschlagen. Konto wurde im System nicht gefunden",
+			"en" : "Authorization failed. Account was not found in the system"
 		},
 
 		"logout_fail" : {
-			"ru" : "logout_fail (ru)",
-			"de" : "logout_fail (de)",
-			"en" : "logout_fail (en)"
+			"ru" : "Ошибка. Обычным пользователям недоступна функция выхода из учетной записи",
+			"de" : "Error. Die Abmeldung ist für normale Benutzer nicht verfügbar",
+			"en" : "Error. Logout is not available for regular users"
 		},
 		"logout_success" : {
-			"ru" : "logout_success (ru)",
-			"de" : "logout_success (de)",
-			"en" : "logout_success (en)"
+			"ru" : "Вы успешно вышли из учетной записи. Теперь Вам доступны только пользовательские функции",
+			"de" : "Sie haben sich erfolgreich von Ihrem Konto abgemeldet. Jetzt sind nur noch Benutzerfunktionen verfügbar",
+			"en" : "You have successfully logged out from your account. Now only user functions are available"
 		},
 
-		"add_questions" : {
-			"ru" : "add_questions (ru)",
-			"de" : "add_questions (de)",
-			"en" : "add_questions (en)"
-		},
 		"add_questions_description" : {
-			"ru" : "add_questions_description (ru)",
-			"de" : "add_questions_description (de)",
-			"en" : "add_questions_description (en)"
+			"ru" : "/cancel (отмена ввода)\nВведите пояснительное письмо к заявке (причина, мотивация для обновления, аргументы в пользу добавления или оставьте поле пустым):",
+			"de" : "/cancel (Eingabe abbrechen)\nGeben Sie eine erläuternde Nachricht zum Hinzufügen einer Anforderung ein (Grund zum Hinzufügen, Motivation zum Aktualisieren, Argumente zum Hinzufügen oder Leerlassen des Felds):",
+			"en" : "/cancel (cancel input)\nEnter an explanatory message for adding request (reason to add, motivation for updating, arguments for adding or leave the field empty):"
 		},
 		"add_questions_place" : {
-			"ru" : "add_questions_place (ru)",
-			"de" : "add_questions_place (de)",
-			"en" : "add_questions_place (en)"
+			"ru" : "/cancel (отмена ввода)\nДобавьте местоположение интересующей Вас достопримечательности (или ее название):",
+			"de" : "/cancel (Eingabe abbrechen)\nGeben Sie den Ort des gewünschten Ortes (oder dessen Namen) hinzu:",
+			"en" : "/cancel (cancel input)\nAdd the location of the place of your interest (or its name):"
 		},
 		"add_questions_question" : {
-			"ru" : "add_questions_question (ru) /commit_questions",
-			"de" : "add_questions_question (de) /commit_questions",
-			"en" : "add_questions_question (en) /commit_questions"
+			"ru" : "/cancel (отмена ввода)\n/commit_questions (прекратить ввод вопросов)\nВнесите вопрос для викторины:",
+			"de" : "/cancel (Eingabe abbrechen)\n/commit_questions (keine Fragen mehr eingeben)\nBitte senden Sie eine Frage für das Quiz:",
+			"en" : "/cancel (cancel input)\n/commit_questions (stop entering questions)\nPlease submit a question for the quiz:"
 		},
 		"add_questions_answer" : {
-			"ru" : "add_questions_answer (ru) /commit_answers",
-			"de" : "add_questions_answer (de) /commit_answers",
-			"en" : "add_questions_answer (en) /commit_answers"
+			"ru" : "/cancel (отмена ввода)\n/commit_answers (прекратить ввод ответов)\nВведите один из ответов на вопрос (верный или неверный):",
+			"de" : "/cancel (Eingabe abbrechen)\n/commit_answers (Eingabe von Antworten beenden)\nGeben Sie eine der Antworten auf die Frage ein (sie kann wahr oder falsch sein):",
+			"en" : "/cancel (cancel input)\n/commit_answers (stop entering answers)\nEnter one of the answers to the question (it may be true or false):"
 		},
 		"add_questions_answer_again" : {
-			"ru" : "add_questions_answer_again (ru) /commit_answers",
-			"de" : "add_questions_answer_again (de) /commit_answers",
-			"en" : "add_questions_answer_again (en) /commit_answers"
+			"ru" : "/cancel (отмена ввода)\n/commit_answers (прекратить ввод ответов)\nВведите следующий ответ:",
+			"de" : "/cancel (Eingabe abbrechen)\n/commit_answers (Eingabe von Antworten beenden)\nBitte geben Sie die folgende Antwort ein:",
+			"en" : "/cancel (cancel input)\n/commit_answers (stop entering responses)\nPlease type the following answer:"
 		},
 		"add_correct_answer" : {
-			"ru" : "add_correct_answer (ru)",
-			"de" : "add_correct_answer (de)",
-			"en" : "add_correct_answer (en)"
+			"ru" : "/cancel (отмена ввода)\nВведите номер верного ответа:",
+			"de" : "/cancel (Eingabe abbrechen)\nGeben Sie die Nummer der richtigen Antwort ein:",
+			"en" : "/cancel (cancel input)\nEnter the number of the correct answer:"
 		},
 		"add_questions_result" : {
-			"ru" : "add_questions_result (ru)",
-			"de" : "add_questions_result (de)",
-			"en" : "add_questions_result (en)"
+			"ru" : "Заявка отправлена на рассмотрение. Спасибо!",
+			"de" : "Anfrage wurde zur Überprüfung gesendet. Vielen Dank!",
+			"en" : "Request was sent for review. Thanks!"
+		},
+		"cancel_injection" : {
+			"ru" : "Выход из режима составления заявки...",
+			"de" : "Beenden des Anforderungsformungsmodus...",
+			"en" : "Exiting request forming mode..."
 		},
 
 		"data_is_empty" : {
-			"ru" : "data_is_empty (ru)",
-			"de" : "data_is_empty (de)",
-			"en" : "data_is_empty (en)"
+			"ru" : "There are no unprocessed requests in the system",
+			"de" : "Es gibt keine unverarbeiteten Anforderungen im System",
+			"en" : "Необработанных заявок нет в системе"
 		},
 		"data_not_moderator" : {
-			"ru" : "data_not_moderator (ru)",
-			"de" : "data_not_moderator (de)",
-			"en" : "data_not_moderator (en)"
+			"ru" : "Пользователям недоступна функция обработки заявок\n/auth - авторизация",
+			"de" : "Die Anforderungsverarbeitungsfunktion ist für Benutzer\n/auth - Autorisierung nicht verfügbar",
+			"en" : "Request processing function is not available for users\n/auth - authorization"
 		},
 
 		"dont_get_it" : {
-			"ru" : "Извините, не могу помочь с этим запросом.",
-			"de" : "dast is sorry cannot find",
-			"en" : "Sorry cant find this"
+			"ru" : "Извини, не могу обработать этот запрос",
+			"de" : "Leider kann ich diese Anfrage nicht bearbeiten",
+			"en" : "Sorry, I can't process this request"
 		}
 	}
 }

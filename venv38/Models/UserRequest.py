@@ -1,4 +1,3 @@
-import re
 from venv38.Models.Question import Question
 
 # ([+-]) - plus/minus
