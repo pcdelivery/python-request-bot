@@ -109,9 +109,9 @@
 		},
 
 		"data_is_empty" : {
-			"ru" : "There are no unprocessed requests in the system",
+			"ru" : "Необработанных заявок нет в системе",
 			"de" : "Es gibt keine unverarbeiteten Anforderungen im System",
-			"en" : "Необработанных заявок нет в системе"
+			"en" : "There are no unprocessed requests in the system"
 		},
 		"data_not_moderator" : {
 			"ru" : "Пользователям недоступна функция обработки заявок\n/auth - авторизация",

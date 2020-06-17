@@ -22,6 +22,7 @@ class Form(StatesGroup):
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TG_TOKEN, proxy=TG_PROXY)
+# bot = Bot(token=TG_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
